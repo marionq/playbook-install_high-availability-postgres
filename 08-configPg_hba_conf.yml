@@ -1,0 +1,33 @@
+- hosts: AllNodes
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Change file ownership and group postgre install directory
+      become: yes
+      file:
+        path: /usr/lib/postgresql/13
+        recurse: yes
+        owner: postgres
+        group: postgres
+
+    - name: Change postgre data directory
+      become: yes
+      become_user: postgres
+      file:
+        path: "{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}"
+        mode: 0700
+        state: directory
+
+    - name: Update pg_hba.conf
+      become: yes
+      become_user: postgres
+      lineinfile:
+        path: "{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}/pg_hba.conf"
+        regexp: '^host    all             all             127.0.0.1/32            trust'
+        line: "host    all             all             0.0.0.0/0            md5"
+
+    - name: Start Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log start"

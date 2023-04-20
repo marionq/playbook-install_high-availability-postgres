@@ -1,0 +1,24 @@
+- hosts: ReadOnly
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Stop Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log stop"
+
+    - name: Clone DB from master node with repmgr
+      become: yes
+      become_user: postgres
+      command: "repmgr -h {{ip_nodo1}} -U repmgr -d repmgr -f {{path_pgdata}}/repmgr.conf standby clone -F"
+    
+    - name: Start Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log start"
+
+    - name: Register standby Node
+      become: yes
+      become_user: postgres
+      command: "repmgr -f {{path_pgdata}}/repmgr.conf standby register"

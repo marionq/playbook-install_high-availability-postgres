@@ -1,0 +1,206 @@
+---
+packages:
+  - acl_2.2.53-6_amd64.deb
+  - alien_8.95_all.deb
+  - apt-transport-https_2.0.6_all.deb
+  - autoconf_2.69-11.1_all.deb
+  - automake_1%3a1.16.1-4ubuntu6_all.deb
+  - autopoint_0.19.8.1-10build1_all.deb
+  - autotools-dev_20180224.1_all.deb
+  - binutils_2.34-6ubuntu1.1_amd64.deb
+  - binutils-common_2.34-6ubuntu1.1_amd64.deb
+  - binutils-x86-64-linux-gnu_2.34-6ubuntu1.1_amd64.deb
+  - build-essential_12.8ubuntu1.1_amd64.deb
+  - colord_1.4.4-2_amd64.deb
+  - colord-data_1.4.4-2_all.deb
+  - cpp_4%3a9.3.0-1ubuntu2_amd64.deb
+  - cpp-9_9.3.0-17ubuntu1~20.04_amd64.deb
+  - cups-bsd_2.3.1-9ubuntu1.1_amd64.deb
+  - cups-client_2.3.1-9ubuntu1.1_amd64.deb
+  - cups-common_2.3.1-9ubuntu1.1_all.deb
+  - cups-filters_1.27.4-1_amd64.deb
+  - cups-filters-core-drivers_1.27.4-1_amd64.deb
+  - cups-ipp-utils_2.3.1-9ubuntu1.1_amd64.deb
+  - debhelper_12.10ubuntu1_all.deb
+  - debugedit_4.14.2.1+dfsg1-1build2_amd64.deb
+  - dh-autoreconf_19_all.deb
+  - dh-strip-nondeterminism_1.7.0-1_all.deb
+  - dpkg-dev_1.19.7ubuntu3_all.deb
+  - dwz_0.13-5_amd64.deb
+  - fakeroot_1.24-1_amd64.deb
+  - fontconfig-config_2.13.1-2ubuntu3_all.deb
+  - fonts-dejavu-core_2.37-1_all.deb
+  - fonts-droid-fallback_1%3a6.0.1r16-1.1_all.deb
+  - fonts-noto-mono_20200323-1build1~ubuntu20.04.1_all.deb
+  - fonts-urw-base35_20170801.1-3_all.deb
+  - g++_4%3a9.3.0-1ubuntu2_amd64.deb
+  - g++-9_9.3.0-17ubuntu1~20.04_amd64.deb
+  - gcc_4%3a9.3.0-1ubuntu2_amd64.deb
+  - gcc-9_9.3.0-17ubuntu1~20.04_amd64.deb
+  - gcc-9-base_9.3.0-17ubuntu1~20.04_amd64.deb
+  - gettext_0.19.8.1-10build1_amd64.deb
+  - ghostscript_9.50~dfsg-5ubuntu4.3_amd64.deb
+  - guile-2.2-libs_2.2.7+1-4_amd64.deb
+  - intltool-debian_0.35.0+20060710.5_all.deb
+  - libalgorithm-diff-perl_1.19.03-2_all.deb
+  - libalgorithm-diff-xs-perl_0.04-6_amd64.deb
+  - libalgorithm-merge-perl_0.08-3_all.deb
+  - libarchive-cpio-perl_0.10-1_all.deb
+  - libarchive-zip-perl_1.67-2_all.deb
+  - libasan5_9.3.0-17ubuntu1~20.04_amd64.deb
+  - libatomic1_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libavahi-client3_0.7-4ubuntu7.1_amd64.deb
+  - libavahi-common3_0.7-4ubuntu7.1_amd64.deb
+  - libavahi-common-data_0.7-4ubuntu7.1_amd64.deb
+  - libbinutils_2.34-6ubuntu1.1_amd64.deb
+  - libc6-dev_2.31-0ubuntu9.2_amd64.deb
+  - libcairo2_1.16.0-4ubuntu1_amd64.deb
+  - libcc1-0_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libc-dev-bin_2.31-0ubuntu9.2_amd64.deb
+  - libcolord2_1.4.4-2_amd64.deb
+  - libcolorhug2_1.4.4-2_amd64.deb
+  - libcommon-sense-perl_3.74-2build6_amd64.deb
+  - libcroco3_0.6.13-1_amd64.deb
+  - libcrypt-dev_1%3a4.4.10-10ubuntu4_amd64.deb
+  - libctf0_2.34-6ubuntu1.1_amd64.deb
+  - libctf-nobfd0_2.34-6ubuntu1.1_amd64.deb
+  - libcups2_2.3.1-9ubuntu1.1_amd64.deb
+  - libcupsfilters1_1.27.4-1_amd64.deb
+  - libcupsimage2_2.3.1-9ubuntu1.1_amd64.deb
+  - libdebhelper-perl_12.10ubuntu1_all.deb
+  - libdpkg-perl_1.19.7ubuntu3_all.deb
+  - libdw1_0.176-1.1build1_amd64.deb
+  - libexif12_0.6.21-6ubuntu0.4_amd64.deb
+  - libfakeroot_1.24-1_amd64.deb
+  - libfile-fcntllock-perl_0.22-3build4_amd64.deb
+  - libfile-stripnondeterminism-perl_1.7.0-1_all.deb
+  - libfontconfig1_2.13.1-2ubuntu3_amd64.deb
+  - libfontembed1_1.27.4-1_amd64.deb
+  - libgc1c2_1%3a7.6.4-0.4ubuntu1_amd64.deb
+  - libgcc-9-dev_9.3.0-17ubuntu1~20.04_amd64.deb
+  - libgd3_2.2.5-5.2ubuntu2.1_amd64.deb
+  - libgomp1_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libgphoto2-6_2.5.25-0ubuntu0.1_amd64.deb
+  - libgphoto2-l10n_2.5.25-0ubuntu0.1_all.deb
+  - libgphoto2-port12_2.5.25-0ubuntu0.1_amd64.deb
+  - libgs9_9.50~dfsg-5ubuntu4.3_amd64.deb
+  - libgs9-common_9.50~dfsg-5ubuntu4.3_all.deb
+  - libgsasl7_1.8.1-1_amd64.deb
+  - libidn11_1.33-2.2ubuntu2_amd64.deb
+  - libieee1284-3_0.2.11-13build1_amd64.deb
+  - libijs-0.35_0.35-15_amd64.deb
+  - libisl22_0.22.1-1_amd64.deb
+  - libitm1_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libjbig0_2.1-3.1build1_amd64.deb
+  - libjbig2dec0_0.18-1ubuntu1_amd64.deb
+  - libjpeg62_1%3a6b2-3_amd64.deb
+  - libjpeg8_8c-2ubuntu8_amd64.deb
+  - libjpeg-turbo8_2.0.3-0ubuntu1.20.04.1_amd64.deb
+  - libjson-perl_4.02000-2_all.deb
+  - libjson-xs-perl_4.020-1build1_amd64.deb
+  - libkyotocabinet16v5_1.2.76-4.2build1_amd64.deb
+  - liblcms2-2_2.9-4_amd64.deb
+  - libllvm9_1%3a9.0.1-12_amd64.deb
+  - liblouis20_3.12.0-3_amd64.deb
+  - liblouis-data_3.12.0-3_all.deb
+  - liblouisutdml9_2.8.0-3_amd64.deb
+  - liblouisutdml-bin_2.8.0-3_amd64.deb
+  - liblouisutdml-data_2.8.0-3_all.deb
+  - liblsan0_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libltdl-dev_2.4.6-14_amd64.deb
+  - liblua5.2-0_5.2.4-1.1build3_amd64.deb
+  - libmail-sendmail-perl_0.80-1_all.deb
+  - libmailutils6_1%3a3.7-2.1_amd64.deb
+  - libmpc3_1.1.0-1_amd64.deb
+  - libmysqlclient21_8.0.26-0ubuntu0.20.04.3_amd64.deb
+  - libncurses5_6.2-0ubuntu2_amd64.deb
+  - libnspr4_2%3a4.25-1_amd64.deb
+  - libnss3_2%3a3.49.1-1ubuntu1.5_amd64.deb
+  - libntlm0_1.5-2_amd64.deb
+  - libopenjp2-7_2.3.1-1ubuntu4.20.04.1_amd64.deb
+  - libpaper1_1.1.28_amd64.deb
+  - libpaper-utils_1.1.28_amd64.deb
+  - libpixman-1-0_0.38.4-0ubuntu1_amd64.deb
+  - libpoppler97_0.86.1-0ubuntu1_amd64.deb
+  - libpoppler-cpp0v5_0.86.1-0ubuntu1_amd64.deb
+  - libpq5_14.0-1.pgdg20.04+1_amd64.deb
+  - libqpdf26_9.1.1-1ubuntu0.1_amd64.deb
+  - libquadmath0_10.3.0-1ubuntu1~20.04_amd64.deb
+  - librpm8_4.14.2.1+dfsg1-1build2_amd64.deb
+  - librpmbuild8_4.14.2.1+dfsg1-1build2_amd64.deb
+  - librpmio8_4.14.2.1+dfsg1-1build2_amd64.deb
+  - librpmsign8_4.14.2.1+dfsg1-1build2_amd64.deb
+  - libsane_1.0.29-0ubuntu5.2_amd64.deb
+  - libsane-common_1.0.29-0ubuntu5.2_all.deb
+  - libsensors5_1%3a3.6.0-2ubuntu1_amd64.deb
+  - libsensors-config_1%3a3.6.0-2ubuntu1_all.deb
+  - libsnmp35_5.8+dfsg-2ubuntu2.3_amd64.deb
+  - libsnmp-base_5.8+dfsg-2ubuntu2.3_all.deb
+  - libstdc++-9-dev_9.3.0-17ubuntu1~20.04_amd64.deb
+  - libsub-override-perl_0.09-2_all.deb
+  - libsys-hostname-long-perl_1.5-1_all.deb
+  - libtiff5_4.1.0+git191117-2ubuntu0.20.04.2_amd64.deb
+  - libtinfo5_6.2-0ubuntu2_amd64.deb
+  - libtool_2.4.6-14_all.deb
+  - libtsan0_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libtypes-serialiser-perl_1.0-1_all.deb
+  - libubsan1_10.3.0-1ubuntu1~20.04_amd64.deb
+  - libwebp6_0.6.1-2ubuntu0.20.04.1_amd64.deb
+  - libxcb-render0_1.14-2_amd64.deb
+  - libxcb-shm0_1.14-2_amd64.deb
+  - libxpm4_1%3a3.5.12-1_amd64.deb
+  - libxrender1_1%3a0.9.10-1_amd64.deb
+  - linux-libc-dev_5.4.0-88.99_amd64.deb
+  - lsb_11.1.0ubuntu2_all.deb
+  - lsb-core_11.1.0ubuntu2_amd64.deb
+  - lsb-invalid-mta_11.1.0ubuntu2_all.deb
+  - lsb-printing_11.1.0ubuntu2_amd64.deb
+  - lsb-security_11.1.0ubuntu2_amd64.deb
+  - m4_1.4.18-4_amd64.deb
+  - mailutils_1%3a3.7-2.1_amd64.deb
+  - mailutils-common_1%3a3.7-2.1_all.deb
+  - make_4.2.1-1.2_amd64.deb
+  - manpages-dev_5.05-1_all.deb
+  - mysql-common_5.8+1.0.5ubuntu2_all.deb
+  - pax_1%3a20190825-1_amd64.deb
+  - pgdg-keyring_2018.2_all.deb
+  - po-debconf_1.0.21_all.deb
+  - poppler-data_0.4.9-2_all.deb
+  - poppler-utils_0.86.1-0ubuntu1_amd64.deb
+  - postgresql-13_13.4-4.pgdg20.04+1_amd64.deb
+  - postgresql-13-repmgr_5.2.1-1.pgdg20.04+1_amd64.deb
+  - postgresql-client-13_13.4-4.pgdg20.04+1_amd64.deb
+  - postgresql-client-common_231.pgdg20.04+1_all.deb
+  - postgresql-common_231.pgdg20.04+1_all.deb
+  - repmgr-common_5.2.1-1.pgdg20.04+1_all.deb
+  - rpm2cpio_4.14.2.1+dfsg1-1build2_amd64.deb
+  - rpm_4.14.2.1+dfsg1-1build2_amd64.deb
+  - rpm-common_4.14.2.1+dfsg1-1build2_amd64.deb
+  - sane-utils_1.0.29-0ubuntu5.2_amd64.deb
+  - ssl-cert_1.0.39_all.deb
+  - sysstat_12.2.0-2ubuntu0.1_amd64.deb
+  - update-inetd_4.50_all.deb
+  - python3-pip
+
+ip_nodo1: 192.168.11.158
+ip_nodo2: 192.168.11.163
+ip_nodo3: 192.168.11.164
+
+hostname_nodo1: ubuntupostgres01
+hostname_nodo2: ubuntupostgres02
+hostname_nodo3: ubuntupostgres03
+
+passwd_replicador: Fatguys8
+passwd_repmgr: Fatguys8
+passwd_postgres_os: Fatguys8
+passwd_postgres_db: Fatguys8
+
+partition_pgdata: sdb
+partition_wal: sdc
+
+path_pgdata: /u01/pg13
+wal_directory: /u01/pg13/archivelog
+
+cluster_name: pgDEV
+cluster_data: data
+

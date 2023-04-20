@@ -1,0 +1,32 @@
+- hosts: Master
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Copy backup Master to Nodo 2
+      become: yes
+      become_user: postgres
+      command: "rsync -a {{path_pgdata}}/basebackup/ postgres@{{ip_nodo2}}:{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}"
+
+    - name: Copy backup Master to Nodo 3
+      become: yes
+      become_user: postgres
+      command: "rsync -a {{path_pgdata}}/basebackup/ postgres@{{ip_nodo3}}:{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}"
+
+    - name: Update pg_hba.conf
+      become: yes
+      become_user: postgres
+      lineinfile:
+        path: "{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}/pg_hba.conf"
+        regexp: '^local   all             all                                     trust'
+        line: "local   all             all                                     peer"
+
+    - name: Register Master Node repmgr
+      become: yes
+      become_user: postgres
+      command: "repmgr -f {{path_pgdata}}/repmgr.conf master register"
+
+    - name: Stop Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log stop"

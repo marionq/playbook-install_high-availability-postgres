@@ -1,0 +1,91 @@
+- hosts: AllNodes
+  vars_files: 
+    - varsInstallPostgres13.yml
+  tasks: 
+
+    - name: apt update
+      become: yes
+      shell: "apt update"
+      args:
+        warn: false
+
+    - name: Install python3-pip
+      become: yes
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install passlib python package
+      pip:
+        name: passlib
+  
+    - name: Install lsb
+      become: yes
+      apt:
+        name: lsb
+        state: present
+
+    - name: Add repo postgresql
+      become: yes
+      command: sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    
+    - name: Import the repository signing key
+      become: yes
+      shell: "wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -"
+      args:
+        warn: false
+
+    - name: apt-get update
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install postgresql-13
+      become: yes
+      apt:
+        name: postgresql-13
+        state: present
+
+    - name: Install apt-transport-https
+      become: yes
+      apt:
+        name: apt-transport-https
+        state: present
+
+    - name: Add repo 2ndquadrant
+      become: yes
+      command: sh -c 'echo "deb https://apt.2ndquadrant.com/ $(lsb_release -cs)-2ndquadrant main" > /etc/apt/sources.list.d/2ndquadrant.list'
+
+    - name: Install the 2ndQuadrant repository key step 1
+      become: yes
+      command: sh -c 'echo "deb https://apt.2ndquadrant.com/ $(lsb_release -cs)-2ndquadrant main" > /etc/apt/sources.list.d/2ndquadrant.list'
+
+    - name: Install the 2ndQuadrant repository key step 2
+      become: yes
+      shell: "curl https://apt.2ndquadrant.com/site/keys/9904CD4BD6BAF0C3.asc | sudo apt-key add -"
+      args:
+        warn: false
+
+    - name: apt-get update
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install postgresql-13-repmgr
+      become: yes
+      apt:
+        name: postgresql-13-repmgr
+        state: present
+
+    - name: Install pgaudit
+      become: yes
+      apt:
+        name: postgresql-13-pgaudit
+        state: present
+
+    - name: Change password user postgres OS
+      become: yes
+      user:
+        name: postgres
+        update_password: always
+        password: "{{ passwd_postgres_os|password_hash('sha512') }}"

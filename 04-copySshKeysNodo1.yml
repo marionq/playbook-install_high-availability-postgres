@@ -1,0 +1,22 @@
+- hosts: KeysNodo1
+  vars_files:
+    - varsInstallPostgres13.yml
+  vars:
+     contents: "{{ lookup('file', '/home/administrator/ansible/instalacionPostgres13Ubuntu/sshKeys/id_rsa.pub-ubuntupostgres01') }}"
+  tasks:
+
+    - name: Create authorized_keys
+      become: yes
+      become_user: postgres
+      file:
+        path: /var/lib/postgresql/.ssh/authorized_keys
+        state: touch
+        mode: u=rw
+
+    - name: Set pub key on authorized_keys Nodo2 y Nodo3
+      become: yes
+      become_user: postgres
+      blockinfile:
+        path: /var/lib/postgresql/.ssh/authorized_keys
+        block: |
+          {{ contents }}

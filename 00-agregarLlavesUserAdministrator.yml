@@ -1,0 +1,15 @@
+- hosts: AllNodes
+  tasks:
+    - authorized_key:
+        user: administrator
+        state: present
+        key: "{{ lookup('file', '/home/administrator/.ssh/id_rsa.pub') }}"
+
+    - name: Add administrator user to sudoers
+      become: yes
+      become_user: root
+      blockinfile:
+        path: /etc/sudoers
+        marker: "# {mark} ANSIBLE MANAGED BLOCK "
+        block: |
+          administrator           ALL=(ALL)       NOPASSWD: ALL

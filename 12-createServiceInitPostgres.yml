@@ -1,0 +1,67 @@
+- hosts: AllNodes
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Create shell iniciarPostgresql13
+      become: yes
+      file:
+        path: "{{path_pgdata}}/iniciarPostgresql13.sh"
+        state: touch
+        mode: u=rwx,g=r,o=r
+
+    - name: Update shell iniciarPostgresql13
+      become: yes
+      blockinfile:
+        path: "{{path_pgdata}}/iniciarPostgresql13.sh"
+        block: |
+
+          su postgres -c "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log start"
+          su postgres -c "repmgrd -f {{path_pgdata}}/repmgr.conf --verbose"
+
+    - name: Update shell iniciarPostgresql13
+      become: yes
+      lineinfile:
+        path: "{{path_pgdata}}/iniciarPostgresql13.sh"
+        regexp: '^# BEGIN ANSIBLE MANAGED BLOCK'
+        line: "#!/bin/bash"
+
+    - name: Create service initpostgresql-13
+      become: yes
+      file:
+        path: /etc/systemd/system/initpostgresql-13.service
+        state: touch
+        mode: u=rw,g=rw,o=r
+
+    - name: Update service initpostgresql-13
+      become: yes
+      blockinfile:
+        path: /etc/systemd/system/initpostgresql-13.service
+        block: |
+          [Unit]
+          After=network.service
+
+          [Service]
+          ExecStart={{path_pgdata}}/iniciarPostgresql13.sh
+
+          [Install]
+          WantedBy=default.target
+        marker: ""
+
+    - name: Change file ownership and root group
+      become: yes
+      file:
+        path: "{{path_pgdata}}/iniciarPostgresql13.sh"
+        owner: root
+        group: root
+
+    - name: Restart deamon
+      become: yes
+      command: systemctl daemon-reload
+
+    - name: Enable initpostgresql-13 service
+      become: yes
+      service:
+        name: initpostgresql-13
+        enabled: yes
+        state: started

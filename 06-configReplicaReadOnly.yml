@@ -1,0 +1,108 @@
+- hosts: ReadOnly
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Crear partición para PGDATA
+      become: yes
+      parted:
+        device: /dev/"{{partition_pgdata}}"
+        number: 1
+        state: present
+
+    - name: Create a ext4 filesystem on /dev/"{{partition_pgdata}}"
+      become: yes
+      filesystem:
+        fstype: ext4
+        dev: /dev/{{partition_pgdata}}1
+
+    - name: Create path PGDATA
+      become: yes
+      command: mkdir -p "{{path_pgdata}}"
+
+    - name: Mount up PGDATA
+      become: yes
+      mount:
+        path: "{{path_pgdata}}"
+        src: /dev/{{partition_pgdata}}1
+        fstype: ext4
+        state: mounted
+
+    - name: Crear partición para archivelog
+      become: yes
+      parted:
+        device: /dev/"{{partition_wal}}"
+        number: 1
+        state: present
+
+    - name: Create a ext4 filesystem on /dev/"{{partition_wal}}"
+      become: yes
+      filesystem:
+        fstype: ext4
+        dev: /dev/{{partition_wal}}1
+
+    - name: Crear directorio de almacenamiento para archivelog
+      become: yes
+      file:
+        path: "{{wal_directory}}"
+        state: directory
+
+    - name: Mount up wal_directory
+      become: yes
+      mount:
+        path: "{{wal_directory}}"
+        src: /dev/{{partition_wal}}1
+        fstype: ext4
+        state: mounted
+
+    - name: Detener postgresql
+      become: yes
+      service:
+        name: postgresql
+        enabled: no
+        state: stopped
+
+    - name: Change PGDATA directoty permission
+      become: yes
+      file:
+        path: "{{path_pgdata}}"
+        recurse: yes
+        owner: postgres
+        group: postgres
+
+    - name: Change wal_directory permission
+      become: yes
+      file:
+        path: "{{wal_directory}}"
+        recurse: yes
+        owner: postgres
+        group: postgres
+
+    - name: Create basebackup
+      become: yes
+      become_user: postgres
+      file:
+        path: "{{path_pgdata}}/basebackup"
+        state: directory
+
+    - name: Iniciar Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/initdb -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -A trust"
+
+    - name: Change postgre data directory
+      become: yes
+      file:
+        path: "{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}"
+        mode: 0700
+        state: directory
+
+    - name: Start Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log start"
+
+    - name: Stop Cluster
+      become: yes
+      become_user: postgres
+      command: "/usr/lib/postgresql/13/bin/pg_ctl -D {{path_pgdata}}/{{cluster_name}}/{{cluster_data}} -l {{path_pgdata}}/{{cluster_name}}.log stop"

@@ -1,0 +1,17 @@
+- hosts: AllNodes
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Generate an ssh keypair with the default values (4096 bits, rsa) and encrypted private key
+      become: yes
+      become_user: postgres
+      command: "ssh-keygen -t rsa -f /var/lib/postgresql/.ssh/id_rsa -P \"\""
+          
+    - name: Store file into Jenkins directory
+      become: yes
+      become_user: postgres
+      fetch:
+        src: /var/lib/postgresql/.ssh/id_rsa.pub
+        dest: /home/administrator/ansible/instalacionPostgres13Ubuntu/sshKeys/id_rsa.pub-{{inventory_hostname}}
+        flat: yes

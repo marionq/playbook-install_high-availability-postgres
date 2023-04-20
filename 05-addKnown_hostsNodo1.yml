@@ -1,0 +1,14 @@
+- hosts: Master
+  vars_files:
+    - varsInstallPostgres13.yml
+  tasks:
+
+    - name: Add known_hosts Nodo2
+      become: yes
+      become_user: postgres
+      shell: "ssh-keyscan -H {{ip_nodo2}} >> ~/.ssh/known_hosts"
+
+    - name: Add known_hosts Nodo3
+      become: yes
+      become_user: postgres
+      shell: "ssh-keyscan -H  {{ip_nodo3}} >> ~/.ssh/known_hosts"

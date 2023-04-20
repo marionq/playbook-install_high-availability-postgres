@@ -1,0 +1,31 @@
+- hosts: Nodo3
+  vars_files:
+    - varsInstallPostgres13.yml
+  vars:
+     contents: "{{ lookup('file', '/home/administrator/ansible/instalacionPostgres13Ubuntu/repmgr.conf') }}"
+  tasks:
+
+    - name: Create repmgr.conf step 1
+      become: yes
+      become_user: postgres
+      file:
+        path: "{{path_pgdata}}/repmgr.conf"
+        state: touch
+        mode: u=rw,g=rw,o=r
+
+    - name: Create repmgr.conf step 2
+      become: yes
+      become_user: postgres
+      blockinfile:
+        path: "{{path_pgdata}}/repmgr.conf"
+        block: |
+          {{ contents }}
+          node_id=3
+          node_name='{{hostname_nodo3}}'
+          conninfo='host={{ip_nodo3}} port=5432 dbname=repmgr user=repmgr'
+          data_directory='{{path_pgdata}}/{{cluster_name}}/{{cluster_data}}'
+          primary_follow_timeout=10
+          failover='automatic'
+          promote_command='repmgr standby promote -f {{path_pgdata}}/repmgr.conf'
+          follow_command='repmgr standby follow -f {{path_pgdata}}/repmgr.conf -W --upstream-node-id=1'
+          log_file='{{path_pgdata}}/repmgrd.log'
